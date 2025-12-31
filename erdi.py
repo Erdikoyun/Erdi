@@ -9,8 +9,8 @@ SCOPE = [
     "https://www.googleapis.com/auth/drive"
 ]
 
-creds = Credentials.from_service_account_file(
-    "service_account.json",
+creds = Credentials.from_service_account_info(
+    st.secrets["gcp_service_account"],
     scopes=SCOPE
 )
 client = gspread.authorize(creds)
@@ -123,3 +123,4 @@ else:
 
         st.dataframe(breakdown, use_container_width=True)
         st.bar_chart(breakdown.set_index("Kalem"))
+
